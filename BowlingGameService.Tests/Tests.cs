@@ -69,6 +69,7 @@ namespace BowlingGameService.Tests
         [Test]
         public void TestSpareAtThe10thTurn_2()
         {
+            // if the input for 10 spares should be "5/ 5/ 5/ 5/ 5/ 5/ 5/ 5/ 5/ 5/ 5/5" need to change the convertion from string to Turns
             var bowlingGame = new Game("5/ 5/ 5/ 5/ 5/ 5/ 5/ 5/ 5/ 5/ 5/-");
             int total = bowlingGame.CalculateTotal();
             int expectedResult = 150;
