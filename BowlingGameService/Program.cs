@@ -14,8 +14,9 @@
             bowlingGame2.PrintGame();
             Console.WriteLine(bowlingGame2.CalculateTotal());
 
-            var bowlingGame3 = new Game("X X X X X X X X X X X");
+            var bowlingGame3 = new Game("1/1 1/1 1/1 X 1/1 1/2 1/2 1/2 1/2 1/2");
             bowlingGame3.PrintGame();
+            Console.WriteLine(bowlingGame3.CalculateTotal());
         }
 
     }

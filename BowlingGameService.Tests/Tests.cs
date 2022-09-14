@@ -50,14 +50,23 @@ namespace BowlingGameService.Tests
             int expectedResult = 47;
             total.Should().Be(expectedResult);
         }
-        //[test]
-        //public void TestStrikeAtMiddle()
-        //{
-        //    var bowlinggame = new Game("1/1 1/1 1/1 X 1/1 1/2 1/2 1/2 1/2 1/2");
-        //    int total = bowlinggame.CalculateTotal();
-        //    int expectedResult = 38;
-        //    total.Should().Be(expectedResult);
-        //}
+        [Test]
+        public void TestStrikeAtMiddle()
+        {
+            var bowlingGame = new Game("1/1 1/1 1/1 X 1/1 1/2 1/2 1/2 1/2 1/-");
+            int total = bowlingGame.CalculateTotal();
+            int expectedResult = 33;
+            total.Should().Be(expectedResult);
+        }
+        [Test]
+        public void TestStrikeAtThe10thTurn()
+        {
+            var bowlingGame = new Game("1/1 1/1 1/1 -/- 1/1 1/2 1/2 1/2 1/2 X 1/2");
+            int total = bowlingGame.CalculateTotal();
+            int expectedResult = 36;
+            total.Should().Be(expectedResult);
+        }
+
 
 
     }

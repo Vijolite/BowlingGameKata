@@ -65,13 +65,18 @@ namespace BowlingGameService
             int score1=0;
             int score2=0;
 
-            if (Turns[index].Try2 != 'S')
+            if (Turns[index].Try1 == 'X')
+            {
+                score1 = (Turns[index+1].Try1 != '-') ? int.Parse(Turns[index+1].Try1.ToString()) : 0;
+                score2 = 10 + ((Turns[index + 1].Try2 != '-') ? int.Parse(Turns[index + 1].Try2.ToString()) : 0);
+            }
+            else if (Turns[index].Try2 != 'S')
             {
                 score1 = (Turns[index].Try1 != '-') ? int.Parse(Turns[index].Try1.ToString()) : 0;
                 score2 = (Turns[index].Try2 != '-') ? int.Parse(Turns[index].Try2.ToString()) : 0;               
             }
             else
-                score2 = 10 + ((Turns[index + 1].Try1 != '-') ? int.Parse(Turns[index + 1].Try1.ToString()) : 0);
+                score1 = 10 + ((Turns[index + 1].Try1 != '-') ? int.Parse(Turns[index + 1].Try1.ToString()) : 0);
             return (score1 + score2);
         }
         public int CalculateTotal()
