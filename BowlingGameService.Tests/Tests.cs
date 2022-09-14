@@ -43,11 +43,11 @@ namespace BowlingGameService.Tests
             total.Should().Be(expectedResult);
         }
         [Test]
-        public void testSpareAtThe10thTurn()
+        public void testSpareAtThe10thTurn_1()
         {
             var bowlingGame = new Game("1/1 1/1 1/1 3/ 1/1 1/2 1/2 1/2 1/2 1/ 2/2");
             int total = bowlingGame.CalculateTotal();
-            int expectedResult = 47;
+            int expectedResult = 43;
             total.Should().Be(expectedResult);
         }
         [Test]
@@ -63,10 +63,17 @@ namespace BowlingGameService.Tests
         {
             var bowlingGame = new Game("1/1 1/1 1/1 -/- 1/1 1/2 1/2 1/2 1/2 X 1/2");
             int total = bowlingGame.CalculateTotal();
-            int expectedResult = 36;
+            int expectedResult = 33;
             total.Should().Be(expectedResult);
         }
-
+        [Test]
+        public void TestSpareAtThe10thTurn_2()
+        {
+            var bowlingGame = new Game("5/ 5/ 5/ 5/ 5/ 5/ 5/ 5/ 5/ 5/ 5/-");
+            int total = bowlingGame.CalculateTotal();
+            int expectedResult = 150;
+            total.Should().Be(expectedResult);
+        }
 
 
     }

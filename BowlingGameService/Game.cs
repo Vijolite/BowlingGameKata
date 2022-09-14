@@ -1,4 +1,6 @@
 ﻿
+using System;
+
 namespace BowlingGameService
 {
     public struct Turn
@@ -17,6 +19,21 @@ namespace BowlingGameService
             else if (Try2 == '-') output = (Try1 + "-");
             else output = (Try1 + "\\" + Try2);
             return output;
+        }
+        public int GetValue()
+        {
+            if (Try1 == 'X' || Try2 == 'S') return 10;
+            else
+            {
+                int score1 = (Try1 != '-') ? int.Parse(Try1.ToString()) : 0;
+                int score2 = (Try2 != '-') ? int.Parse(Try2.ToString()) : 0;
+                return (score1 + score2);
+            }
+        }
+        public int GetValueTry1()
+        {
+            if (Try1 == 'X' ) return 10;
+            else return (Try1 != '-') ? int.Parse(Try1.ToString()) : 0;
         }
     }
     public class Game
@@ -62,27 +79,14 @@ namespace BowlingGameService
 
         private int CalculateScoreOfOneTurn (int index)
         {
-            int score1=0;
-            int score2=0;
-
-            if (Turns[index].Try1 == 'X')
-            {
-                score1 = (Turns[index+1].Try1 != '-') ? int.Parse(Turns[index+1].Try1.ToString()) : 0;
-                score2 = 10 + ((Turns[index + 1].Try2 != '-') ? int.Parse(Turns[index + 1].Try2.ToString()) : 0);
-            }
-            else if (Turns[index].Try2 != 'S')
-            {
-                score1 = (Turns[index].Try1 != '-') ? int.Parse(Turns[index].Try1.ToString()) : 0;
-                score2 = (Turns[index].Try2 != '-') ? int.Parse(Turns[index].Try2.ToString()) : 0;               
-            }
-            else
-                score1 = 10 + ((Turns[index + 1].Try1 != '-') ? int.Parse(Turns[index + 1].Try1.ToString()) : 0);
-            return (score1 + score2);
+            if (Turns[index].Try1 == 'X') return Turns[index].GetValue() + Turns[index + 1].GetValue();
+            else if (Turns[index].Try2 == 'S') return Turns[index].GetValue() + Turns[index + 1].GetValueTry1();
+            else return Turns[index].GetValue();
         }
         public int CalculateTotal()
         {
             int total = 0;
-            for (int i =0; i<Turns.Length;i++)
+            for (int i =0; i<10;i++) //we are calculating only 10 first frames (last 2 will be used in case of spare\strake on the 10th
             {
                 total += CalculateScoreOfOneTurn(i);
             }
