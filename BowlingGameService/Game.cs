@@ -59,12 +59,27 @@ namespace BowlingGameService
             }
             Console.WriteLine(output);
         }
+
+        private int CalculateScoreOfOneTurn (int index)
+        {
+            int score1=0;
+            int score2=0;
+
+            if (Turns[index].Try2 != 'S')
+            {
+                score1 = (Turns[index].Try1 != '-') ? int.Parse(Turns[index].Try1.ToString()) : 0;
+                score2 = (Turns[index].Try2 != '-') ? int.Parse(Turns[index].Try2.ToString()) : 0;               
+            }
+            else
+                score2 = 10 + ((Turns[index + 1].Try1 != '-') ? int.Parse(Turns[index + 1].Try1.ToString()) : 0);
+            return (score1 + score2);
+        }
         public int CalculateTotal()
         {
             int total = 0;
-            foreach (var turn in Turns)
+            for (int i =0; i<Turns.Length;i++)
             {
-                total+=(int.Parse(turn.Try1.ToString()) + int.Parse(turn.Try2.ToString()));
+                total += CalculateScoreOfOneTurn(i);
             }
             return total;
         }

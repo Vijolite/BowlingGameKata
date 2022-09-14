@@ -4,8 +4,6 @@
     {
         public static void Main()
         { 
-            //var turn1 = new Turn ( new char[2] { '1','2'} );
-            //Turn turn1 = new Turn('1','2');
             var bowlingGame1 = new Game(new Turn[] 
                                { new Turn('1', '2'), new Turn('1', '2'), new Turn('1', '2'), new Turn('1', '2'), new Turn('1', '2'),
                                new Turn('1', '2'), new Turn('1', '2'), new Turn('1', '2'), new Turn('1', '2'), new Turn('1', '2')
