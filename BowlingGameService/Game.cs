@@ -79,7 +79,13 @@ namespace BowlingGameService
 
         private int CalculateScoreOfOneTurn (int index)
         {
-            if (Turns[index].Try1 == 'X') return Turns[index].GetValue() + Turns[index + 1].GetValue();
+            if (Turns[index].Try1 == 'X')
+            {
+                if (Turns[index+1].Try1 == 'X') // if there were 2 strikes in a line we should look the 3rd frame as well
+                    return Turns[index].GetValue() + Turns[index + 1].GetValue() + Turns[index + 1].GetValueTry1();
+                else
+                    return Turns[index].GetValue() + Turns[index + 1].GetValue();
+            } 
             else if (Turns[index].Try2 == 'S') return Turns[index].GetValue() + Turns[index + 1].GetValueTry1();
             else return Turns[index].GetValue();
         }

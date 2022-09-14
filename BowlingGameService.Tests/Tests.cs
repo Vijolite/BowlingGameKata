@@ -74,7 +74,14 @@ namespace BowlingGameService.Tests
             int expectedResult = 150;
             total.Should().Be(expectedResult);
         }
-
+        [Test]
+        public void Test_12_Strikes()
+        {
+            var bowlingGame = new Game("X X X X X X X X X X X X");
+            int total = bowlingGame.CalculateTotal();
+            int expectedResult = 300;
+            total.Should().Be(expectedResult);
+        }
 
     }
 }
